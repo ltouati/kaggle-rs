@@ -21,7 +21,7 @@ serde_json = "1.0.137"
 base64 = "0.22.1"
 futures = "0.3.31"
 chrono = { version = "0.4.39", features = ["serde"] }
-reqwest = { version = "0.12.12", features = ["json", "stream", "multipart"] }
+reqwest = { version = "0.12.12", features = ["json", "stream", "multipart","rustls-tls"], default-features = false, optional = true }
 tempfile = "3.15.0"
 anyhow = "1.0.95"
 dirs = "6.0.0"
@@ -40,3 +40,7 @@ flate2 = "1.0.35"
 tokio = { version = "1.43.0", features = ["macros"] }
 env_logger = "0.11.6"
 
+[features]
+default=["rust-tls"]
+rust-tls=["reqwest/rustls-tls"]
+native-tls=["reqwest/native-tls"]
